@@ -10,11 +10,11 @@ function BasketItem(props) {
   return (
     <li className="collection-item ">
       {displayName} в количестве{" "}
-      <i className="material-icons" onClick={() => changeCount(mainId, -1)}>
+      <i className="material-icons change-count" onClick={() => changeCount(mainId, -1)}>
         exposure_neg_1
       </i>{" "}
       {count}шт.{" "}
-      <i className="material-icons" onClick={() => changeCount(mainId, +1)}>
+      <i className="material-icons change-count" onClick={() => changeCount(mainId, +1)}>
         exposure_plus_1
       </i>{" "}
       = {finalPrice * count}$

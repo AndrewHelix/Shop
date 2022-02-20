@@ -15,6 +15,7 @@ function BasketList(props) {
       }
       <li className="collection-item active">
         Total {totalPrice}$
+        <button className="secondary-content btn-small">Buy</button>
       </li>
     </ul>
   );

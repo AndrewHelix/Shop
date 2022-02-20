@@ -1,15 +1,17 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { API_KEY, API_URL  } from "../config";
 import { ItemsList } from "./ItemsList";
 import { Preloader } from "./Preloader";
 import { Cart } from "./Cart";
 import { BasketList } from "./BasketList";
+import { Alert } from "./Alert";
 
 function Shop() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
   const [isBasketShow, setBasketShow] = useState(false)
+  const [alertName, setAlertName] = useState('')
 
   const addToBasket = (item) => {
     const indexItem = order.findIndex(el => el.mainId === item.mainId)
@@ -30,6 +32,7 @@ function Shop() {
 
       setOrder(newOrder)
     }
+    setAlertName(item.displayName)
   }
 
   const removeFromBasket = (id) => {
@@ -41,8 +44,6 @@ function Shop() {
   }
 
   const changeCount = (id, num) => {
-    
-    const index = order.findIndex(el => el.mainId === id)
     
     const newOrder = order.map(el => {
       if  (el.mainId === id) {
@@ -58,6 +59,10 @@ function Shop() {
       return el
     })
     setOrder(newOrder)
+  }
+
+  const closeAlert = () => {
+    setAlertName('')
   }
 
   useEffect(() => {
@@ -81,6 +86,9 @@ function Shop() {
     }
     {
       isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow} removeFromBasket={removeFromBasket} changeCount={changeCount}/> 
+    }
+    {
+      alertName && <Alert name={alertName} closeAlert={closeAlert}/>
     }
   </main>
 }
