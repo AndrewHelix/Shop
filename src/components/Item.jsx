@@ -5,6 +5,7 @@ function Item(props) {
     displayDescription,
     displayAssets: [{ full_background }],
     price: { finalPrice },
+    addToBasket,
   } = props;
 
   return (
@@ -17,7 +18,11 @@ function Item(props) {
         <p>{displayDescription}</p>
       </div>
       <div className="card-action">
-        <button className="btn">Buy now</button>
+        <button className="btn" onClick={() => addToBasket({
+          mainId,
+          displayName,
+          finalPrice
+        })}>Buy now</button>
         <span className="right" style={{'fontSize': '20px'}}>{finalPrice}$</span>
       </div>
     </div>
