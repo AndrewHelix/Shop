@@ -1,13 +1,14 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
 
-
-function Cart(props) {
-  const {elements = 0, handleBasketShow} = props;
+function Cart() {
+  const {order, handleBasketShow} = useContext(ShopContext);
 
   return (
     <div className="cart deep-orange" onClick={handleBasketShow}>
       <i className="material-icons ">shopping_cart</i>
       {
-        elements ? <span className="cart-elements">{elements}</span> : null
+        order.length ? <span className="cart-elements">{order.length}</span> : null
       }
     </div>
   )
